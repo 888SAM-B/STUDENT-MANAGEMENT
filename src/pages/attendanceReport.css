@@ -1,0 +1,125 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600&display=swap');
+
+
+
+.attendance-report-container3 {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+   font-family: "Roboto Condensed", sans-serif;
+}
+
+
+.report-title3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+
+.attendance-legend3 {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  justify-content: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.legend-present3 {
+  color: rgb(25, 211, 25);
+}
+.legend-halfday3 {
+  color: rgb(255, 172, 17);
+}
+.legend-absent3 {
+  color: rgb(255, 28, 28);
+}
+
+
+.report-date-input3 {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 6px 10px;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  font-size: 14px;
+  border: 1px solid rgb(31, 74, 99);
+}
+
+
+.attendance-table3 {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+
+}
+
+
+.table-header3 th {
+  background-color: #dbe1e9;
+  color: rgb(26, 25, 25);
+  padding: 10px;
+  text-align: center;
+}
+
+.table-body3 td {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+.student-name3 {
+  font-weight: bold;
+  text-align: left;
+  padding-left: 10px;
+  white-space: nowrap;
+}
+.student-summary3 {
+  font-weight: bold;
+}
+
+
+.status-icon3 {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin: auto;
+}
+.present3 {
+  background-color: rgb(23, 226, 23);
+}
+.halfday3 {
+  background-color: rgb(255, 171, 14);
+}
+.absent3 {
+  background-color: rgb(255, 17, 17);
+}
+.nodata3 {
+  background-color: #ccc;
+}
+
+
+.date-summary-row3 {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+.date-summary-label3 {
+  padding: 10px;
+}
+.date-summary-cell3 {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.summary-count3 {
+  margin: 2px 0;
+}
+.summary-empty-cell3 {
+  background-color: #f1f1f1;
+}

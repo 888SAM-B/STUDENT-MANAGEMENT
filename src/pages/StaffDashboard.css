@@ -1,0 +1,88 @@
+.staff-dashboard {
+  background: linear-gradient(135deg, #083f66 0%, #1a4764 100%);
+  color: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+              rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+              rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  font-family: "Roboto Condensed", sans-serif;
+  text-align: center;
+}
+
+.staff-dashboard h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #f0d01d;
+  text-align: center;
+}
+
+.staff-dashboard button {
+  width: 100%;
+  background-color: #f0d01d;
+  color: #000000;
+  padding: 14px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Roboto Condensed", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+              rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+              rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  margin-bottom: 15px;
+}
+
+.staff-dashboard button:hover {
+  background-color: #e6bc00;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+@media screen and (max-width: 768px) {
+  .staff-dashboard {
+    padding: 30px;
+    max-width: 350px;
+    margin: 30px auto;
+  }
+
+  .staff-dashboard h1 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+
+  .staff-dashboard button {
+    padding: 12px;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .staff-dashboard {
+    padding: 20px;
+    max-width: 300px;
+    margin: 20px auto;
+    border-radius: 12px;
+  }
+
+  .staff-dashboard h1 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  .staff-dashboard button {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+
+  .staff-dashboard button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}

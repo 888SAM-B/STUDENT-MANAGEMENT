@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.admin-dashboard-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 40px;
+   border-right: 5px solid rgb(23, 54, 88);
+   border-left: 5px solid rgb(23, 54, 88);
+  padding-left: 1rem;
+  border-radius: 13px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  text-align: center;
+ font-family: "Roboto Condensed", sans-serif;
+  background: linear-gradient(135deg, #ffffff 0%, #9bd0fc 100%);
+}
+
+.db-status-heading {
+  font-size: 2.5rem;
+  color: #1c270f;
+  margin-bottom: 10px;
+}
+
+.admin-dashboard-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.admin-welcome-text,
+.admin-instruction-text {
+  font-size: 1.2rem;
+  color: #1a1c2c;
+  margin: 5px 0;
+}
+
+.admin-button-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.admin-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  transition: all 0.3s ease;
+  color: #000000;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.admin-btn:hover {
+  background-color: #084d9e;
+  transform: scale(1.05);
+}
+
+.admin-students-btn {
+  background-color: #f0d01d; 
+}
+
+.admin-students-btn:hover {
+  background-color: #c5ab17; 
+}
+
+.admin-staff-btn {
+  background-color: #f0d01d; 
+}
+
+.admin-staff-btn:hover {
+  background-color: #c5ab17; 
+}
+
+.admin-classes-btn {
+  background-color: #f0d01d; 
+}
+
+.admin-classes-btn:hover {
+  background-color: #c5ab17; 
+}
+
+
+/* Mobile Devices (up to 480px) */
+@media (max-width: 480px) {
+  .admin-dashboard-container {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .admin-dashboard-title {
+    font-size: 1.5rem;
+  }
+
+  .admin-welcome-text,
+  .admin-instruction-text {
+    font-size: 0.9rem;
+  }
+
+  .admin-button-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .admin-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .admin-dashboard-container {
+    padding: 30px;
+    margin: 40px 20px;
+  }
+
+  .admin-dashboard-title {
+    font-size: 1.8rem;
+  }
+
+  .admin-button-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .admin-btn {
+    flex: 1 1 45%;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .admin-dashboard-container {
+    padding: 40px;
+    margin: 50px auto;
+  }
+
+  .admin-button-group {
+    gap: 18px;
+  }
+
+  .admin-btn {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+}
+
+
+@media (min-width: 1025px) {
+  .admin-dashboard-container {
+    max-width: 800px;
+  }
+
+  .admin-button-group {
+    gap: 20px;
+  }
+
+  .admin-btn {
+    font-size: 1rem;
+    padding: 12px 24px;
+  }
+}

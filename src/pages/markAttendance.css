@@ -1,0 +1,216 @@
+
+.attendance-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  text-align: center;
+  font-family: "Roboto Condensed", sans-serif;
+  letter-spacing: 0.03rem;
+  text-transform: uppercase;
+}
+
+.attendance-date-selector {
+  background: linear-gradient(135deg, #083f66 0%, #1a4764 100%);
+  color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 0.125rem 0.5rem,
+              rgba(0, 0, 0, 0.3) 0 0.625rem 1.125rem -0.1875rem,
+              rgba(0, 0, 0, 0.2) 0 -0.1875rem 0 inset;
+  width: 100%;
+  max-width: 37.5rem;
+  margin: 1.875rem auto 1.25rem;
+  font-family: "Roboto Condensed", sans-serif;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.attendance-date-selector label {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-right: 0.625rem;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.attendance-date-input {
+  width: 60%;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid #27506b;
+  outline: none;
+  font-family: "Roboto Condensed", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0.0625rem 0.125rem;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.attendance-no-students {
+  font-size: 1.2rem;
+  color: #f0d01d;
+  text-align: center;
+  font-family: "Roboto Condensed", sans-serif;
+  margin: 1.25rem 0;
+}
+
+.attendance-table {
+  width: 100%;
+  max-width: 37.5rem;
+  margin: 1.25rem auto;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 0.125rem 0.5rem,
+              rgba(0, 0, 0, 0.3) 0 0.625rem 1.125rem -0.1875rem,
+              rgba(0, 0, 0, 0.2) 0 -0.1875rem 0 inset;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.attendance-table th,
+.attendance-table td {
+  padding: 0.75rem;
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.1rem;
+  border: 0.0625rem solid #27506b;
+}
+
+.attendance-table th {
+  background-color: #eaeaeb;
+  font-weight: 600;
+  color: #000000;
+}
+
+.attendance-table td {
+  color: #000;
+  background-color: #d4dadd;
+}
+
+.attendance-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: #ffdb12;
+}
+
+.attendance-button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin: 1.25rem auto;
+  max-width: 37.5rem;
+}
+
+.attendance-submit-button,
+.attendance-finish-button {
+  width: 45%;
+  background-color: #f0d01d;
+  color: #000000;
+  padding: 0.875rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-family: "Roboto Condensed", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 0.1875rem 0.375rem,
+              rgba(0, 0, 0, 0.3) 0 0.5rem 0.9375rem -0.1875rem,
+              rgba(0, 0, 0, 0.2) 0 -0.125rem 0 inset;
+}
+
+.attendance-submit-button:hover,
+.attendance-finish-button:hover {
+  background-color: #ffdb4d;
+  transform: translateY(-0.25rem);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  .attendance-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .attendance-date-selector {
+    padding: 1.5rem;
+    max-width: 90vw;
+    margin: 1rem auto;
+  }
+
+  .attendance-date-selector label {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  .attendance-date-input {
+    width: 80%;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .attendance-no-students {
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+
+  .attendance-table {
+    max-width: 90vw;
+    margin: 1rem auto;
+  }
+
+  .attendance-table th,
+  .attendance-table td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .attendance-checkbox {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .attendance-button-group {
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 90vw;
+  }
+
+  .attendance-submit-button,
+  .attendance-finish-button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  .attendance-title {
+    font-size: 1.2rem;
+  }
+
+  .attendance-date-selector {
+    padding: 1.8rem;
+    width: 80%;
+  }
+
+  .attendance-date-input {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .attendance-table th,
+  .attendance-table td {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+  }
+
+  .attendance-submit-button,
+  .attendance-finish-button {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+}

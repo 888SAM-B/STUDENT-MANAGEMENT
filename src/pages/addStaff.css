@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+.db-connection-status1 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 20px 0;
+}
+
+.add-student-button1 {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 7px 10px;
+  background-color: #f0d01d;
+  color: #000000;
+  border: none;
+  padding: 1rem 1.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  font-family: "Roboto Condensed", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.add-student-button1:hover {
+  background-color: #e8ebf0;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.student-section1 {
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  background: linear-gradient(135deg, #083f66 0%, #1a4764 100%);
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.student-list-heading1 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.class-filter-select1 {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 10px;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: #000;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: bold;
+}
+
+.no-students-message1 {
+  text-align: center;
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+.student-table1 {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.student-table1 th,
+.student-table1 td {
+  padding: 12px;
+  text-align: center;
+  border: 1.6px solid #27506b;
+}
+
+.student-table-header1 {
+  background-color: #e3e7ecd0;
+}
+
+.student-row1:hover {
+  background-color: #e7ebee;
+}
+
+.action-cell1 .delete-student-button1 {
+  padding: 8px 14px;
+  background-color: #c42510;
+  color: white;
+  border: none;
+  font-family: "Roboto Condensed", sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.action-cell1 .delete-student-button1:hover {
+  background-color: #f0241d;
+}
+
+.add-student-container1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.add-student-box1 {
+  background: linear-gradient(135deg, #083f66 0%, #1a4764 100%);
+  color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  animation: slideDown1 0.3s ease-in-out;
+}
+
+@keyframes slideDown1 {
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close-add-student-button1 {
+  position: absolute;
+  top: 30px;
+  right: 45px;
+  background-color: #f0d01d;
+  color: #000000;
+  font-weight: bold;
+  border: none;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 16px;
+  width: 60px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  height: 30px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.close-add-student-button1:hover {
+  background-color: #e6bc00;
+}
+
+.add-student-title1 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.add-student-form1 {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.student-input1,
+.student-select1 {
+  padding: 14px;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  font-family: "Roboto Condensed", sans-serif;
+  border: 1px solid #183253;
+  outline: none;
+}
+
+.submit-add-student-button1 {
+  background-color: #f0d01d;
+  color: #000000;
+  padding: 10px 16px;
+  font-size: 1.2rem;
+  border: none;
+  font-family: "Roboto Condensed", sans-serif;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-add-student-button1:hover {
+  background-color: #e4bb05;
+}
+
+
+@media (max-width: 768px) {
+  .db-connection-status1 {
+    font-size: 1.5rem;
+    margin: 15px 0;
+  }
+
+  .add-student-button1 {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .student-section1 {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .student-list-heading1 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .class-filter-select1 {
+    font-size: 1.4rem;
+    padding: 8px;
+  }
+
+  .no-students-message1 {
+    font-size: 1rem;
+  }
+
+  .student-table1 th,
+  .student-table1 td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .action-cell1 .delete-student-button1 {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .add-student-box1 {
+    padding: 20px;
+    max-width: 80%;
+  }
+
+  .add-student-title1 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+
+  .student-input1,
+  .student-select1 {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .submit-add-student-button1 {
+    padding: 8px 14px;
+    font-size: 1rem;
+  }
+
+  .close-add-student-button1 {
+    top: 20px;
+    right: 30px;
+    width: 50px;
+    height: 25px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .db-connection-status1 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+
+  .add-student-button1 {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .student-section1 {
+    padding: 15px;
+  }
+
+  .student-list-heading1 {
+    font-size: 1.2rem;
+  }
+
+  .class-filter-select1 {
+    font-size: 1.2rem;
+    padding: 6px;
+  }
+
+  .no-students-message1 {
+    font-size: 0.9rem;
+  }
+
+  .student-table1 th,
+  .student-table1 td {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+
+  .action-cell1 .delete-student-button1 {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+  }
+
+  .add-student-box1 {
+    padding: 15px;
+    max-width: 90%;
+  }
+
+  .add-student-title1 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .student-input1,
+  .student-select1 {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .submit-add-student-button1 {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .close-add-student-button1 {
+    top: 15px;
+    right: 20px;
+    width: 40px;
+    height: 20px;
+    font-size: 12px;
+  }
+}

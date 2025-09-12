@@ -1,0 +1,122 @@
+.class-list-container2 {
+  background: linear-gradient(135deg, #083f66 0%, #1a4764 100%);
+  color: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 8px,
+              rgba(0, 0, 0, 0.3) 0px 10px 18px -3px,
+              rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  width: 100%;
+  max-width: 420px;
+  margin: 60px auto;
+  font-family: "Roboto Condensed", sans-serif;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+
+.class-list-title2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #ffffff;
+  text-align: center;
+  font-family: "Roboto Condensed", sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.class-card-button2 {
+  width: 100%;
+  background-color: #f0d01d;
+  color: #000000;
+  padding: 16px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-family: "Roboto Condensed", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 6px,
+              rgba(0, 0, 0, 0.3) 0px 8px 15px -3px,
+              rgba(0, 0, 0, 0.2) 0px -2px 0px inset;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.class-card-button2:hover {
+  background-color: #ffdb4d;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  color: #000000;
+}
+
+.class-card2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.class-name-heading2 {
+  font-size: 1.3rem;
+  color: #000000;
+  margin: 0;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 500;
+}
+
+
+@media screen and (max-width: 768px) {
+  .class-list-container2 {
+    padding: 30px;
+    max-width: 360px;
+    margin: 40px auto;
+  }
+
+  .class-list-title2 {
+    font-size: 1.7rem;
+    margin-bottom: 18px;
+  }
+
+  .class-card-button2 {
+    padding: 14px;
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+    border-radius: 8px;
+  }
+
+  .class-name-heading2 {
+    font-size: 1.1rem;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  .class-list-container2 {
+    padding: 20px;
+    max-width: 300px;
+    margin: 30px auto;
+    border-radius: 12px;
+  }
+
+  .class-list-title2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .class-card-button2 {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+
+  .class-name-heading2 {
+    font-size: 0.9rem;
+  }
+
+  .class-card-button2:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+  }
+}

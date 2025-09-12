@@ -1,0 +1,152 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+.dashboard-title1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #f0d01d;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.dashboard-divider1 {
+  border: 1.5px solid #f0d01d;
+  width: 70%;
+  margin: 0 auto 30px auto;
+  border-radius: 10px;
+}
+.dashboard-divider2 {
+  border: 1.5px solid #f0d01d;
+  width: 50%;
+  margin: 0 auto 30px auto;
+  border-radius: 10px;
+}
+
+.dashboard-welcome1,
+.dashboard-roll1,
+.dashboard-class1,
+.dashboard-working-days1 {
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.dashboard-present-count1,
+.dashboard-halfday-count1,
+.dashboard-absent-count1 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #ffffff;
+}
+
+.dashboard-attendance-title12 {
+  text-align: center;
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+  color: #f0d01d;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.dashboard-attendance-value8 {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.dashboard-record-title7 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 40px 0 20px 0;
+  color: #f0d01d;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.dashboard-present-record0,
+.dashboard-halfday-record55,
+.dashboard-absent-record23 {
+  font-size: 1.1rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  margin: 10px 25px;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+              rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+              rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+@media (max-width: 768px) {
+  .dashboard-title1 {
+    font-size: 1.7rem;
+  }
+
+  .dashboard-attendance-value8 {
+    font-size: 2rem;
+  }
+
+  .dashboard-welcome1,
+  .dashboard-roll1,
+  .dashboard-class1,
+  .dashboard-working-days1,
+  .dashboard-present-count1,
+  .dashboard-halfday-count1,
+  .dashboard-absent-count1 {
+    font-size: 1.1rem;
+  }
+
+  .dashboard-record-title7 {
+    font-size: 1.4rem;
+  }
+
+  .dashboard-present-record0,
+  .dashboard-halfday-record55,
+  .dashboard-absent-record23 {
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-title1 {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-attendance-value8 {
+    font-size: 1.7rem;
+  }
+
+  .dashboard-welcome1,
+  .dashboard-roll1,
+  .dashboard-class1,
+  .dashboard-working-days1,
+  .dashboard-present-count1,
+  .dashboard-halfday-count1,
+  .dashboard-absent-count1 {
+    font-size: 1rem;
+  }
+
+  .dashboard-record-title7 {
+    font-size: 1.2rem;
+  }
+
+  .dashboard-present-record0,
+  .dashboard-halfday-record55,
+  .dashboard-absent-record23 {
+    font-size: 0.95rem;
+    padding: 10px;
+    margin: 10px 15px;
+  }
+}
+.dashboard-welcome1{
+  font-size:2rem;
+  ;
+}

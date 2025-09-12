@@ -1,0 +1,140 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+.container {
+  max-width: 400px;
+  margin: 60px auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  
+  
+  
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+   font-size: 1.3rem;
+   color: #ece9e9;
+}
+
+.form-control {
+  width: 90%;
+  height: 30px;
+  padding: 10px 11px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #dadfe6;
+  color: #000;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  transition: border 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #173966;
+  outline: none;
+  
+}
+
+.btn-primary {
+  width: 40%;
+  background-color: #f0d01d;
+  color: #000;
+  padding: 12px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-family: "Roboto Condensed", sans-serif;
+  display: block;
+  margin: 20px auto 0 auto; 
+  transition: all 0.3s ease;
+}
+
+
+.btn-primary:hover {
+   background-color: #e8ebf0; 
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 72%;
+    padding: 20px 15px;
+    margin: 30px auto;
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .form-label {
+    font-size: 1rem;
+  }
+
+  .form-control {
+    width: 90%;
+    font-size: 0.95rem;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  .btn-primary {
+    width: 60%;
+    font-size: 1.1rem;
+    padding: 12px;
+    margin: 20px auto 0 auto;
+  }
+}
+@media (max-width: 580px) {
+  .container {
+    width: 72%;
+    padding: 20px 15px;
+    margin: 30px auto;
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .form-label {
+    font-size: 1rem;
+  }
+
+  .form-control {
+    width: 90%;
+    font-size: 0.95rem;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  .btn-primary {
+    width: 60%;
+    font-size: 1.1rem;
+    padding: 12px;
+    margin: 20px auto 0 auto;
+  }
+}
