@@ -65,11 +65,13 @@ const ListOfClasses3 = () => {
             <button
               key={cls._id || idx}
               className="class-card-button2"
-              onClick={() =>
-                navigate('/attendanceReport', {
-                  state: { className: cls.className }
-                })
+              onClick={() =>{
+                navigate('/marks-update', {
+                  state: { className: cls.className, students: cls.Students }
+                });
+                console.log(cls);
               }
+            }
             >
               <div className="class-card2">
                 <h2 className="class-name-heading2">{cls.className}</h2>

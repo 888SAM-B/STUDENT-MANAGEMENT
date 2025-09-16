@@ -7,6 +7,7 @@ import Teacherlogin from './pages/Teacherlogin'
 import Studentlogin from './pages/Studentlogin'
 import ListOfClasses1 from './pages/listOfClasses1'
 import ListOfClasses2 from './pages/listOfClasses2'
+import MarkUpdate from './pages/markUpdate'
 import StudentDashboard from './pages/studentDashboard'
 import Admindashboard from './pages/admindashboard'
 import AddStudents from './pages/AddStudents'
@@ -16,6 +17,7 @@ import MarkAttendance from './pages/markAttendance'
 import StaffDashboard from './pages/StaffDashboard'
 import AttendanceReport from './pages/attendanceReport'
 import ListOfClasses3 from './pages/listOfClasses3'
+import ListOfClasses4 from './pages/ListOfClasses4'
 function App() {
   return (
    <div>
@@ -30,12 +32,14 @@ function App() {
         <Route path="/class-List" element={<ListOfClasses1/>}/>
         <Route path="/class_List" element={<ListOfClasses2/>}/>
         <Route path="/classlist" element={<ListOfClasses3/>}/>
+        <Route path="/classlist2" element={<ListOfClasses4/>}/>
         <Route path="/studentDashboard" element={<StudentDashboard/>}/>
         <Route path="/admindashboard" element={<Admindashboard/>}/>
         <Route path="/addClasses" element={<AddClasses/>}/>
         <Route path="/markAttendance" element={<MarkAttendance/>}/>
         <Route path="/staffDashboard" element={<StaffDashboard/>}/>
         <Route path="/attendanceReport" element={<AttendanceReport/>}/>
+        <Route path='/marks-update' element={<MarkUpdate/>}/>
       </Routes>
     </div>
   )

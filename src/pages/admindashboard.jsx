@@ -90,6 +90,13 @@ const AdminDashboard = () => {
                 </button>
                 <button
                     className="admin-btn admin-classes-btn"
+                    title='Update Fee Structure'
+                    onClick={() => navigate('/classlist2')}
+                >
+                    Update Fees
+                </button>
+                <button
+                    className="admin-btn admin-classes-btn"
                     title="Add or Remove Classes"
                     onClick={() => navigate('/class_list')}
                 >
