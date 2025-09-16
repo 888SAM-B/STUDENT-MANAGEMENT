@@ -1,4 +1,3 @@
-// ======================= SERVER CODE (Express + MongoDB) =======================
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -7,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const centralDbUri = `mongodb+srv://dycattendance:dycattendance@dyc-attendance.r5jyblp.mongodb.net/ins`;
+const centralDbUri = `mongodb+srv://dycattendance:dycattendance@dyc-attendance.r5jyblp.mongodb.net/institutions`;
 
 mongoose.connect(centralDbUri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to institutions database'))
@@ -51,10 +50,28 @@ app.post('/createdb', async (req, res) => {
         const conn = await getDbConnection(dbName.replace(/\s+/g, '').toLowerCase());
 
         const TeacherSchema = new mongoose.Schema({ name: String, staffId: String, password: String, subject: String });
-        const StudentSchema = new mongoose.Schema({ name: String, class: String, rollNumber: String });
+        // --- Updated StudentSchema for marks storage ---
+        const StudentSchema = new mongoose.Schema({
+            name: { type: String, required: true },
+            class: { type: String, required: true },
+            rollNumber: { type: String, required: true },
+            feesPaid: { type: Number, default: 0 },
+            feesPending: { type: Number, default: 0 },
+            present: { type: [String], default: [] },
+            halfDay: { type: [String], default: [] },
+            absent: { type: [String], default: [] },
+
+            // Marks storage per semester
+            sem1: { type: [{ subject: String, marks: String }], default: [] },
+            sem2: { type: [{ subject: String, marks: String }], default: [] },
+            sem3: { type: [{ subject: String, marks: String }], default: [] },
+            sem4: { type: [{ subject: String, marks: String }], default: [] },
+            sem5: { type: [{ subject: String, marks: String }], default: [] },
+            sem6: { type: [{ subject: String, marks: String }], default: [] },
+        });
 
         const Teacher = conn.model('Teacher', TeacherSchema);
-        const Student = conn.model('Student', StudentSchema);
+        const Student = conn.model('Student', StudentSchema); // Use the updated schema
 
         await new Teacher({ name: 'John Doe', staffId: 'T001', password: 'pass', subject: 'Math' }).save();
         await new Student({ name: 'Jane Smith', class: '10A', rollNumber: 'S001' }).save();
@@ -90,10 +107,24 @@ app.post('/studentLogin', async (req, res) => {
     const { institution, rollNumber } = req.body;
     if (!institution || !rollNumber) return res.status(400).json({ error: 'All fields are required' });
     const conn = await getDbConnection(institution);
-    const Student = conn.models.Student || conn.model('Student', new mongoose.Schema({ name: String, class: String, rollNumber: String }));
+    // --- Use the updated Student Schema here as well ---
+    const Student = conn.models.Student || conn.model('Student', new mongoose.Schema({
+        name: { type: String, required: true },
+        class: { type: String, required: true },
+        rollNumber: { type: String, required: true },
+        present: { type: [String], default: [] },
+        halfDay: { type: [String], default: [] },
+        absent: { type: [String], default: [] },
+        sem1: { type: [{ subject: String, marks: String }], default: [] },
+        sem2: { type: [{ subject: String, marks: String }], default: [] },
+        sem3: { type: [{ subject: String, marks: String }], default: [] },
+        sem4: { type: [{ subject: String, marks: String }], default: [] },
+        sem5: { type: [{ subject: String, marks: String }], default: [] },
+        sem6: { type: [{ subject: String, marks: String }], default: [] },
+    }));
     const student = await Student.findOne({ rollNumber });
     if (!student) return res.status(404).json({ error: 'Student not found' });
-    
+
     res.json({ message: 'Login successful', studentData: student });
 });
 
@@ -126,7 +157,26 @@ const dbMiddleware = async (req, res, next) => {
 app.use(dbMiddleware);
 
 const getModels = (conn) => {
-    const Student = conn.models.Student || conn.model('Student', new mongoose.Schema({ name: String, class: String, rollNumber: String, present: Array, halfDay: Array, absent: Array }));
+    // --- Updated StudentSchema for marks storage ---
+    const studentSchema = new mongoose.Schema({
+        name: { type: String, required: true },
+        class: { type: String, required: true },
+        rollNumber: { type: String, required: true },
+
+        present: { type: [String], default: [] },
+        halfDay: { type: [String], default: [] },
+        absent: { type: [String], default: [] },
+
+        sem1: { type: [{ subject: String, marks: String }], default: [] },
+        sem2: { type: [{ subject: String, marks: String }], default: [] },
+        sem3: { type: [{ subject: String, marks: String }], default: [] },
+        sem4: { type: [{ subject: String, marks: String }], default: [] },
+        sem5: { type: [{ subject: String, marks: String }], default: [] },
+        sem6: { type: [{ subject: String, marks: String }], default: [] },
+    });
+
+    const Student = conn.models.Student || conn.model("Student", studentSchema);
+
     const Teacher = conn.models.Teacher || conn.model('Teacher', new mongoose.Schema({ name: String, staffId: String, password: String, subject: String }));
     const Class = conn.models.Class || conn.model('Class', new mongoose.Schema({ className: String, Students: [{ rollNumber: String, name: String }] }));
     const Attendance = conn.models.Attendance || conn.model('Attendance', new mongoose.Schema({
@@ -171,7 +221,8 @@ app.post('/addStudent', async (req, res) => {
     if (!classExists) return res.status(400).json({ error: 'Class does not exist' });
     classExists.Students.push({ rollNumber, name });
     await classExists.save();
-    await new Student({ name, class: studentClass, rollNumber }).save();
+    // --- When adding a new student, ensure the marks fields are initialized as empty arrays of objects ---
+    await new Student({ name, class: studentClass, rollNumber, sem1: [], sem2: [], sem3: [], sem4: [], sem5: [], sem6: [] }).save();
     res.status(201).json({ message: 'Student added' });
 });
 
@@ -179,16 +230,16 @@ app.post('/deleteStudent', async (req, res) => {
     const { studentId, rollNumber, className } = req.body;
     const { Student } = getModels(req.db);
     const result = await Student.deleteOne({ rollNumber });
-    
+
     if (result.deletedCount === 0) return res.status(404).json({ error: 'Student not found' });
     const { Class } = getModels(req.db);
     const classExists = await Class.findOne({ className });
-    
+
     if (!classExists) return res.status(400).json({ error: 'Class does not exist' });
     classExists.Students = classExists.Students.filter(student => student.rollNumber !== rollNumber);
     await classExists.save();
-    
-    
+
+
     res.json({ message: 'Student deleted' });
 });
 
@@ -266,7 +317,7 @@ app.get('/getAttendance/:className/:date', async (req, res) => {
         });
 
         if (!record) return res.status(200).json(null); // No record for date
-        
+
         res.status(200).json({
             records: record.records,
             staffId: record.staffId,
@@ -487,7 +538,93 @@ app.get('/attendanceReport/:className', async (req, res) => {
     }
 });
 
+// New routes for student marks management
+app.get('/student/:rollNumber/marks/:semester', async (req, res) => {
+    const { rollNumber, semester } = req.params;
 
+    if (!rollNumber || !semester) {
+        return res.status(400).json({ error: 'Roll number and semester are required' });
+    }
 
+    // The dbMiddleware handles admin credentials for req.db
+    try {
+        const { Student } = getModels(req.db);
+        const student = await Student.findOne({ rollNumber });
+
+        if (!student) {
+            return res.status(404).json({ error: 'Student not found' });
+        }
+
+        // Dynamically access the semester field (e.g., student['sem1'])
+        const marks = student[semester] || [];
+
+        res.json({ rollNumber, semester, marks });
+    } catch (error) {
+        console.error(`Error fetching marks for ${rollNumber} in ${semester}:`, error);
+        res.status(500).json({ error: 'Failed to fetch marks', details: error.message });
+    }
+});
+
+app.put('/student/:rollNumber/marks/:semester', async (req, res) => {
+    const { rollNumber, semester } = req.params;
+    const { subjects } = req.body; // subjects will be an array of { subject: String, marks: String }
+
+    if (!rollNumber || !semester || !Array.isArray(subjects)) {
+        return res.status(400).json({ error: 'Roll number, semester, and subjects array are required' });
+    }
+
+    // The dbMiddleware handles admin credentials for req.db
+    try {
+        const { Student } = getModels(req.db);
+        const student = await Student.findOne({ rollNumber });
+
+        if (!student) {
+            return res.status(404).json({ error: 'Student not found' });
+        }
+
+        // Update the specific semester's marks
+        student[semester] = subjects; // Assign the new array of subjects/marks
+
+        await student.save();
+
+        res.status(200).json({ message: `Marks for ${rollNumber} in ${semester} updated successfully` });
+    } catch (error) {
+        console.error(`Error updating marks for ${rollNumber} in ${semester}:`, error);
+        res.status(500).json({ error: 'Failed to update marks', details: error.message });
+    }
+});
+
+// Add this route to your server.js, perhaps before app.listen()
+app.put('/student/:studentId', async (req, res) => {
+    const { studentId } = req.params;
+    const updateFields = req.body; // Expects an object like { sem1: ["Math:90", "Science:85"] }
+
+    // Validate admin credentials (already handled by dbMiddleware but good to be explicit)
+    const userId = req.headers['x-user-id'];
+    const password = req.headers['x-user-password'];
+    if (!userId || !password) return res.status(400).json({ error: 'Missing admin credentials in headers' });
+    // dbMiddleware would have already checked validity, so just proceed
+
+    if (Object.keys(updateFields).length === 0) {
+        return res.status(400).json({ error: 'No fields provided for update.' });
+    }
+
+    try {
+        const { Student } = getModels(req.db); // Get Student model for the current institution DB
+        const result = await Student.findByIdAndUpdate(
+            studentId,
+            { $set: updateFields }, // Use $set to update specific fields
+            { new: true, runValidators: true } // new: true returns the updated document
+        );
+
+        if (!result) {
+            return res.status(404).json({ error: 'Student not found.' });
+        }
+
+        res.status(200).json({ message: 'Student data updated successfully.', student: result });
+    } catch (error) {
+        console.error(`Error updating student ${studentId}:`, error);
+        res.status(500).json({ error: 'Failed to update student data', details: error.message });
+    }
+});
 app.listen(5000, () => console.log('Server running on port 5000'));
-
