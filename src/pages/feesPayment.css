@@ -1,0 +1,221 @@
+.fees-payment-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.fees-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.fees-table th, .fees-table td {
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    text-align: left;
+}
+
+.fees-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.fees-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.fees-table tr:hover {
+    background-color: #e9e9e9;
+}
+
+.mark-payment-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+
+.mark-payment-btn:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+.mark-payment-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Table Footer */
+.fees-table tfoot td {
+    background-color: #e0f7fa; /* Light blue for footer */
+    font-weight: bold;
+    border-top: 2px solid #007bff;
+    color: #004d40;
+}
+
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-content h3 {
+    color: #555;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.pending-fees-list {
+    list-style: none;
+    padding: 0;
+    max-height: 200px; /* Make it scrollable if many fees */
+    overflow-y: auto;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.pending-fees-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.pending-fees-list li:last-child {
+    border-bottom: none;
+}
+
+.pending-fees-list input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.pending-fees-list label {
+    flex-grow: 1;
+    color: #444;
+}
+
+.fee-status {
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.paid-status {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.partial-status {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+
+.payment-input-section {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-input-section label {
+    font-weight: bold;
+    color: #555;
+}
+
+.payment-input-section input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.modal-actions {
+    margin-top: 30px;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.update-btn, .cancel-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+.update-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.update-btn:hover {
+    background-color: #0056b3;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -93,7 +93,14 @@ const AdminDashboard = () => {
                     title='Update Fee Structure'
                     onClick={() => navigate('/classlist2')}
                 >
-                    Update Fees
+                    Add Fees
+                </button>
+                <button
+                    className="admin-btn admin-classes-btn"
+                    title='Update Fee Structure'
+                    onClick={() => navigate('/feespayment')}
+                >
+                     Fees Payment 
                 </button>
                 <button
                     className="admin-btn admin-classes-btn"

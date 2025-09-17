@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 // Replace with your .env URL
 const url = import.meta.env.VITE_URL;
 
-const ListOfClasses3 = () => {
+const ListOfClasses4 = () => {
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(true); // 👈 Loading state
   const navigate = useNavigate();
@@ -84,7 +84,7 @@ return (
                         key={cls._id || idx}
                         className="class-card-button2"
                         onClick={() => {
-                            navigate('/fees-update', {
+                            navigate('/feesupdate', {
                                 state: { className: cls.className, students: cls.Students }
                             });
                             console.log(cls);
@@ -101,4 +101,4 @@ return (
 );
 };
 
-export default ListOfClasses3;
+export default ListOfClasses4;

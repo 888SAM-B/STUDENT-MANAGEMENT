@@ -18,6 +18,8 @@ import StaffDashboard from './pages/StaffDashboard'
 import AttendanceReport from './pages/attendanceReport'
 import ListOfClasses3 from './pages/listOfClasses3'
 import ListOfClasses4 from './pages/ListOfClasses4'
+import FeesUpdate from './pages/feesUpdate'
+import FeesPayment from './pages/feesPayment'
 function App() {
   return (
    <div>
@@ -40,6 +42,8 @@ function App() {
         <Route path="/staffDashboard" element={<StaffDashboard/>}/>
         <Route path="/attendanceReport" element={<AttendanceReport/>}/>
         <Route path='/marks-update' element={<MarkUpdate/>}/>
+        <Route path='/feesUpdate' element={<FeesUpdate/>}/>
+        <Route path='/feesPayment' element={<FeesPayment/>}/>
       </Routes>
     </div>
   )
