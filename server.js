@@ -55,11 +55,11 @@ app.post('/createdb', async (req, res) => {
             name: { type: String, required: true },
             class: { type: String, required: true },
             rollNumber: { type: String, required: true },
-            feesPaid: { type: Number, default: 0 },
-            feesPending: { type: Number, default: 0 },
             present: { type: [String], default: [] },
             halfDay: { type: [String], default: [] },
             absent: { type: [String], default: [] },
+            fees: { type: [{ feeName: String, amount: Number }], default: [] },
+            paid: { type: [{ feeName: String, amount: Number, date: String }], default: [] },
 
             // Marks storage per semester
             sem1: { type: [{ subject: String, marks: String }], default: [] },
@@ -115,6 +115,8 @@ app.post('/studentLogin', async (req, res) => {
         present: { type: [String], default: [] },
         halfDay: { type: [String], default: [] },
         absent: { type: [String], default: [] },
+        fees: { type: [{ feeName: String, amount: Number }], default: [] },
+        paid: { type: [{ feeName: String, amount: Number, date: String }], default: [] },
         sem1: { type: [{ subject: String, marks: String }], default: [] },
         sem2: { type: [{ subject: String, marks: String }], default: [] },
         sem3: { type: [{ subject: String, marks: String }], default: [] },
@@ -166,6 +168,8 @@ const getModels = (conn) => {
         present: { type: [String], default: [] },
         halfDay: { type: [String], default: [] },
         absent: { type: [String], default: [] },
+        fees: { type: [{ feeName: String, amount: Number }], default: [] },
+        paid: { type: [{ feeName: String, amount: Number, date: String }], default: [] },
 
         sem1: { type: [{ subject: String, marks: String }], default: [] },
         sem2: { type: [{ subject: String, marks: String }], default: [] },
@@ -627,4 +631,283 @@ app.put('/student/:studentId', async (req, res) => {
         res.status(500).json({ error: 'Failed to update student data', details: error.message });
     }
 });
+// ... (previous code) ...
+
+// New route: To SET/UPDATE the FEES DUE for students
+app.post('/setStudentFees', async (req, res) => {
+    // Expects: { className: "10A", students: [{ rollNumber: "S001", fees: [{ feeName: "Tuition", amount: 1000 }] }, ...] }
+    const { className, students: studentsWithFees } = req.body; // Renamed to clarify
+
+    if (!className || !Array.isArray(studentsWithFees)) {
+        return res.status(400).json({ error: 'Class name and an array of students with their fees are required' });
+    }
+
+    try {
+        const { Student } = getModels(req.db);
+        const updatedStudents = [];
+
+        for (const studentData of studentsWithFees) {
+            const { rollNumber, fees: newFeesDue } = studentData; // fees: [{ feeName, amount }]
+
+            if (!rollNumber || !Array.isArray(newFeesDue)) {
+                console.warn(`Skipping invalid student data: ${JSON.stringify(studentData)}`);
+                continue;
+            }
+
+            const student = await Student.findOne({ rollNumber });
+
+            if (!student) {
+                console.warn(`Student with roll number ${rollNumber} not found, skipping fee update.`);
+                continue;
+            }
+
+            // Update the 'fees' array in the student document
+            student.fees = newFeesDue.filter(f => f.feeName && f.amount !== undefined && f.amount !== null);
+
+            // Recalculate feesPending based on total fees due and feesPaid
+            const totalFeesDue = student.fees.reduce((sum, fee) => sum + (fee.amount || 0), 0);
+            student.feesPending = Math.max(0, totalFeesDue - student.feesPaid);
+
+            await student.save();
+            updatedStudents.push(student);
+        }
+
+        res.status(200).json({ message: 'Student fees set successfully', updatedStudents });
+    } catch (error) {
+        console.error('Error setting student fees:', error);
+        res.status(500).json({ error: 'Failed to set student fees', details: error.message });
+    }
+});
+
+// Original fees route - This needs to be for RECORDING PAYMENTS
+// I've commented out the original and provided a more appropriate version
+/*
+app.post('/fees', async (req, res) => {
+    const { className, fees } = req.body; // fees is an array of { rollNumber, fees: [{ feeName, amount }] }
+
+    if (!className || !Array.isArray(fees)) {
+        return res.status(400).json({ error: 'Class name and fees array are required' });
+
+    }
+    try {
+        const { Student } = getModels(req.db);
+        for (const studentFee of fees) {
+            const { rollNumber, fees: feeDetails } = studentFee;
+            if (!rollNumber || !Array.isArray(feeDetails)) continue;
+            const student = await Student.findOne({ rollNumber });
+            if (!student) {
+                console.warn(`Student with roll number ${rollNumber} not found, skipping fee update.`);
+                continue;
+            }
+            let totalPaid = 0;
+            for (const fee of feeDetails) {
+                const amount = parseFloat(fee.amount) || 0;
+                totalPaid += amount;
+            }
+            student.feesPaid += totalPaid;
+            student.feesPending = Math.max(0, student.feesPending - totalPaid);
+            await student.save();
+        }
+        res.status(200).json({ message: 'Fees updated successfully' });
+    } catch (error) {
+        console.error('Error updating fees:', error);
+        res.status(500).json({ error: 'Failed to update fees', details: error.message });
+    }
+});
+*/
+
+// **New /recordPayment route - for actually recording payments**
+app.post('/recordPayment', async (req, res) => {
+    const { rollNumber, paymentDetails } = req.body; // paymentDetails: [{ feeName: "Tuition", amount: 500, date: "2023-10-26" }]
+
+    if (!rollNumber || !Array.isArray(paymentDetails) || paymentDetails.length === 0) {
+        return res.status(400).json({ error: 'Roll number and payment details are required' });
+    }
+
+    try {
+        const { Student } = getModels(req.db);
+        const student = await Student.findOne({ rollNumber });
+
+        if (!student) {
+            return res.status(404).json({ error: `Student with roll number ${rollNumber} not found.` });
+        }
+
+        let totalPaymentAmount = 0;
+        const now = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD
+
+        for (const payment of paymentDetails) {
+            const { feeName, amount } = payment;
+            if (!feeName || typeof amount !== 'number' || amount <= 0) {
+                console.warn(`Skipping invalid payment detail: ${JSON.stringify(payment)} for ${rollNumber}`);
+                continue;
+            }
+
+            // Add to the 'paid' array
+            student.paid.push({ feeName, amount, date: payment.date || now });
+            totalPaymentAmount += amount;
+        }
+
+        // Update feesPaid and feesPending
+        student.feesPaid += totalPaymentAmount;
+        // Recalculate feesPending based on total fees due and updated feesPaid
+        const totalFeesDue = student.fees.reduce((sum, fee) => sum + (fee.amount || 0), 0);
+        student.feesPending = Math.max(0, totalFeesDue - student.feesPaid);
+
+        await student.save();
+
+        res.status(200).json({ message: `Payment recorded successfully for ${rollNumber}`, student });
+    } catch (error) {
+        console.error('Error recording payment:', error);
+        res.status(500).json({ error: 'Failed to record payment', details: error.message });
+    }
+});
+
+// ... (rest of the code) ...
+// app.get('/allStudentsFees', async (req, res) => {
+//     try {
+//         const { Student } = getModels(req.db);
+//         const students = await Student.find({}, {
+//             name: 1,
+//             rollNumber: 1,
+//             class: 1,
+//             fees: 1,
+//             paid: 1,
+//             feesPaid: 1,
+//             feesPending: 1
+//         });
+
+//         if (!students.length) {
+//             return res.status(404).json({ message: 'No students found' });
+//         }
+
+//         const formattedStudents = students.map(student => ({
+//             name: student.name,
+//             _id: student._id,
+//             rollNumber: student.rollNumber,
+//             class: student.class,
+//             feeDetails: {
+//                 dueAmount: student.fees.reduce((sum, fee) => sum + (fee.amount || 0), 0),
+//                 paidAmount: student.paid.reduce((sum, payment) => sum + (payment.amount || 0), 0),
+//                 payments: student.paid,
+//                 pending: student.fees.map(fee => ({
+//                     feeName: fee.feeName,
+//                     amount: fee.amount,
+//                     paidAmount: student.paid
+//                         .filter(p => p.feeName === fee.feeName)
+//                         .reduce((sum, p) => sum + (p.amount || 0), 0)
+//                 }))
+//             }
+//         }));
+
+//         res.json(formattedStudents);
+//     } catch (error) {
+//         console.error('Error fetching students fees:', error);
+//         res.status(500).json({ error: 'Failed to fetch students fees', details: error.message });
+//     }
+// });
+
+    // In server.js, modify the app.get('/allStudentsFees') route
+
+    app.get('/allStudentsFees', async (req, res) => {
+        try {
+            const { Student } = getModels(req.db);
+            const students = await Student.find({}, {
+                name: 1,
+                rollNumber: 1,
+                class: 1,
+                fees: 1, // Get all originally set fees
+                paid: 1, // Get all recorded payments
+            });
+
+            if (!students.length) {
+                return res.status(404).json({ message: 'No students found' });
+            }
+
+            const formattedStudents = students.map(student => {
+                const totalFeesDue = student.fees.reduce((sum, fee) => sum + (fee.amount || 0), 0);
+                const totalFeesPaid = student.paid.reduce((sum, payment) => sum + (payment.amount || 0), 0);
+                const totalPendingAmount = Math.max(0, totalFeesDue - totalFeesPaid);
+
+                // This structure will allow us to easily show status in the frontend
+                const feeDetailsWithStatus = student.fees.map(originalFee => {
+                    const paymentsForThisFee = student.paid.filter(p => p.feeName === originalFee.feeName);
+                    const amountPaidForThisFee = paymentsForThisFee.reduce((sum, p) => sum + (p.amount || 0), 0);
+                    const remainingAmount = originalFee.amount - amountPaidForThisFee;
+
+                    return {
+                        _id: originalFee._id, // Keep the original _id if available, or generate one
+                        feeName: originalFee.feeName,
+                        originalAmount: originalFee.amount,
+                        amountPaid: amountPaidForThisFee,
+                        pendingAmount: Math.max(0, remainingAmount),
+                        status: remainingAmount <= 0 ? 'Paid' : (amountPaidForThisFee > 0 ? 'Partially Paid' : 'Pending')
+                    };
+                });
+
+
+                return {
+                    _id: student._id, // Add student _id here for easy access in frontend
+                    name: student.name,
+                    rollNumber: student.rollNumber,
+                    class: student.class,
+                    feeDetails: {
+                        totalDue: totalFeesDue,
+                        totalPaid: totalFeesPaid,
+                        totalPending: totalPendingAmount,
+                        // Combine original fees with their payment status
+                        allFees: feeDetailsWithStatus,
+                        payments: student.paid, // Keep original payments array for detailed history if needed
+                    }
+                };
+            });
+
+            res.json(formattedStudents);
+        } catch (error) {
+            console.error('Error fetching students fees:', error);
+            res.status(500).json({ error: 'Failed to fetch students fees', details: error.message });
+        }
+    });
+
+// New route for updating student fees (recording payments)
+app.put('/updateStudentFees/:studentId', async (req, res) => {
+    const { studentId } = req.params;
+    const { paymentsToAdd, totalPaymentMade } = req.body; // paymentsToAdd is an array of { feeName, amount, date }
+
+    if (!Array.isArray(paymentsToAdd) || paymentsToAdd.length === 0) {
+        return res.status(400).json({ error: 'paymentsToAdd array is required and should not be empty.' });
+    }
+
+    try {
+        const { Student } = getModels(req.db);
+        const student = await Student.findById(studentId);
+
+        if (!student) {
+            return res.status(404).json({ error: 'Student not found.' });
+        }
+
+        // Add each new payment to the 'paid' array
+        paymentsToAdd.forEach(payment => {
+            student.paid.push({
+                feeName: payment.feeName,
+                amount: payment.amount,
+                date: payment.date // Use provided date or default
+            });
+        });
+
+        // Recalculate feesPaid based on the updated 'paid' array
+        student.feesPaid = student.paid.reduce((sum, p) => sum + (p.amount || 0), 0);
+
+        // Recalculate feesPending based on total fees due and updated feesPaid
+        const totalFeesDue = student.fees.reduce((sum, fee) => sum + (fee.amount || 0), 0);
+        student.feesPending = Math.max(0, totalFeesDue - student.feesPaid);
+
+        await student.save();
+
+        res.status(200).json({ message: 'Fees updated successfully!', student });
+    } catch (error) {
+        console.error(`Error updating fees for student ${studentId}:`, error);
+        res.status(500).json({ error: 'Failed to update fees', details: error.message });
+    }
+});
+
 app.listen(5000, () => console.log('Server running on port 5000'));
