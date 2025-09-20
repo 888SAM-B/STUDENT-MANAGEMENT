@@ -57,7 +57,7 @@ const CreateInstitution = () => {
 
   return (
     <div className="container">
-      <h1>Create Institution</h1>
+      <h1 style={{color:"white"}} >Create Institution</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="institutionName" className="form-label">Institution Name</label>

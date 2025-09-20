@@ -180,7 +180,7 @@ const url=import.meta.env.VITE_URL
       >
         <input type="text" name="name" placeholder="Name" required className="student-input1" />
         <input type="text" name="staffId" placeholder="Staff ID" required className="student-input1" />
-        <input type="text" name="password" placeholder="Create Password" required className="student-input1" />
+        <input type="password" name="password" placeholder="Create Password" required className="student-input1" />
         <input type="text" name="subject" placeholder="Department" required className="student-input1" />
         <button type="submit" className="submit-add-student-button1">
           Add Staff
