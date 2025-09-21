@@ -152,7 +152,7 @@ const FeesPayment = () => {
 
     return (
         <div className="fees-payment-container">
-            <h1>Fees Payment Overview</h1>
+            <h1 style={{color:"#000"}}>Fees Payment Overview</h1>
 
             <table className="fees-table">
                 <thead>

@@ -1,152 +1,145 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
-
-
-
 .dashboard-title1 {
-  font-size: 2rem;
   text-align: center;
-  margin-bottom: 15px;
-  color: #f0d01d;
-  font-family: 'Roboto Condensed', sans-serif;
+  color: #fff;
+  font-size: 2.5em;
+  margin-top: 20px;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .dashboard-divider1 {
-  border: 1.5px solid #f0d01d;
-  width: 70%;
-  margin: 0 auto 30px auto;
-  border-radius: 10px;
-}
-.dashboard-divider2 {
-  border: 1.5px solid #f0d01d;
-  width: 50%;
-  margin: 0 auto 30px auto;
-  border-radius: 10px;
+  border: 0;
+  height: 2px;
+  background: linear-gradient(to right, #0e204d, #083f66, #0e204d);
+  margin: 20px auto;
+  width: 80%;
 }
 
 .dashboard-welcome1,
 .dashboard-roll1,
-.dashboard-class1,
+.dashboard-class1 {
+  text-align: center;
+  color: #c0c0c0; /* Lighter grey for welcome text */
+  font-size: 1.5em;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.dashboard-divider2 {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, #0e204d, #083f66, #0e204d);
+  margin: 30px auto;
+  width: 70%;
+  opacity: 0.7;
+}
+
 .dashboard-working-days1 {
   text-align: center;
-  font-size: 1.3rem;
-  font-family: 'Roboto Condensed', sans-serif;
-  color: #ffffff;
-  margin-bottom: 10px;
+  color: #e0e0e0;
+  font-size: 1.8em;
+  margin-top: 40px;
+  font-weight: 600;
 }
 
 .dashboard-present-count1,
 .dashboard-halfday-count1,
 .dashboard-absent-count1 {
   text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 8px;
-  font-family: 'Roboto Condensed', sans-serif;
-  color: #ffffff;
+  color: #a0a0a0;
+  font-size: 1.2em;
+  margin: 5px 0;
 }
 
 .dashboard-attendance-title12 {
   text-align: center;
-  font-size: 1.7rem;
-  margin-bottom: 10px;
-  color: #f0d01d;
-  font-family: 'Roboto Condensed', sans-serif;
+  color: #e0e0e0;
+  font-size: 2em;
+  margin-top: 40px;
+  font-weight: 600;
 }
 
 .dashboard-attendance-value8 {
   text-align: center;
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: #ffffff;
-  font-family: 'Roboto Condensed', sans-serif;
+  color: #8cff76; /* Bright green for percentage */
+  font-size: 2.8em;
+  margin-top: 10px;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(140, 255, 118, 0.7);
 }
 
 .dashboard-record-title7 {
-  font-size: 1.5rem;
   text-align: center;
-  margin: 40px 0 20px 0;
-  color: #f0d01d;
-  font-family: 'Roboto Condensed', sans-serif;
+  color: #e0e0e0;
+  font-size: 2em;
+  margin-top: 40px;
+  font-weight: 600;
 }
 
 .dashboard-present-record0,
 .dashboard-halfday-record55,
 .dashboard-absent-record23 {
-  font-size: 1.1rem;
-  font-family: 'Roboto Condensed', sans-serif;
-  margin: 10px 25px;
-  background-color: #ffffff;
-  color: #000000;
-  padding: 15px;
+  color: #a0a0a0;
+  font-size: 1.1em;
+  line-height: 1.6;
+  padding: 10px 5%;
+  background-color: rgba(255, 255, 255, 0.05);
+  margin: 10px auto;
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-              rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
-              rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 768px) {
-  .dashboard-title1 {
-    font-size: 1.7rem;
-  }
-
-  .dashboard-attendance-value8 {
-    font-size: 2rem;
-  }
-
-  .dashboard-welcome1,
-  .dashboard-roll1,
-  .dashboard-class1,
-  .dashboard-working-days1,
-  .dashboard-present-count1,
-  .dashboard-halfday-count1,
-  .dashboard-absent-count1 {
-    font-size: 1.1rem;
-  }
-
-  .dashboard-record-title7 {
-    font-size: 1.4rem;
-  }
-
-  .dashboard-present-record0,
-  .dashboard-halfday-record55,
-  .dashboard-absent-record23 {
-    font-size: 1rem;
-    padding: 12px;
-  }
+/* New styles for Fees and Marks */
+.dashboard-fees-title,
+.dashboard-paid-fees-title,
+.dashboard-marks-title {
+  text-align: center;
+  color: #e0e0e0;
+  font-size: 2em;
+  margin-top: 40px;
+  font-weight: 600;
 }
 
-@media (max-width: 480px) {
-  .dashboard-title1 {
-    font-size: 1.5rem;
-  }
-
-  .dashboard-attendance-value8 {
-    font-size: 1.7rem;
-  }
-
-  .dashboard-welcome1,
-  .dashboard-roll1,
-  .dashboard-class1,
-  .dashboard-working-days1,
-  .dashboard-present-count1,
-  .dashboard-halfday-count1,
-  .dashboard-absent-count1 {
-    font-size: 1rem;
-  }
-
-  .dashboard-record-title7 {
-    font-size: 1.2rem;
-  }
-
-  .dashboard-present-record0,
-  .dashboard-halfday-record55,
-  .dashboard-absent-record23 {
-    font-size: 0.95rem;
-    padding: 10px;
-    margin: 10px 15px;
-  }
+.dashboard-fee-item,
+.dashboard-paid-item,
+.dashboard-subject-item {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-left: 5px solid #00aaff; /* Blue accent */
+  padding: 15px 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  max-width: 700px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-.dashboard-welcome1{
-  font-size:2rem;
-  ;
+
+.dashboard-paid-item {
+  border-left: 5px solid #ffcc00; /* Yellow accent for paid fees */
+}
+
+.dashboard-subject-item {
+  border-left: 5px solid #ff6600; /* Orange accent for marks */
+}
+
+.dashboard-fee-name,
+.dashboard-fee-amount,
+.dashboard-paid-feename,
+.dashboard-paid-amount,
+.dashboard-paid-date,
+.dashboard-subject-name,
+.dashboard-subject-marks {
+  color: #c0c0c0;
+  font-size: 1.2em;
+  margin: 5px 0;
+  font-weight: 400;
+}
+
+.dashboard-no-fees,
+.dashboard-no-paid-fees,
+.dashboard-no-marks {
+  text-align: center;
+  color: #808080;
+  font-size: 1.2em;
+  margin-top: 20px;
 }

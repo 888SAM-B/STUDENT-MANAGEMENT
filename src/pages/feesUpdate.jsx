@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { use } from 'react';
 import { useLocation } from 'react-router-dom';
+import './feesUpdate.css'
 
 const FeesUpdate = () => {
     const [className, setClassName] = useState('');
@@ -83,7 +84,7 @@ const FeesUpdate = () => {
     };
 
     return (
-        <div>
+        <div className='fees-update-container'>
             <h2>Define Fees for Class: {className}</h2>
 
             {students.length === 0 ? (
@@ -92,7 +93,7 @@ const FeesUpdate = () => {
                 <form onSubmit={handleSubmit}>
                     <h3>Fee Structure to Apply to All {students.length} Students:</h3>
                     {feesToApply.map((fee, index) => (
-                        <div key={index}>
+                        <div key={index} className="fee-row" >
                             <label>
                                 Fee Name:{' '}
                                 <input
@@ -126,8 +127,8 @@ const FeesUpdate = () => {
                     ))}
                     <button type="button" onClick={handleAddFee}>Add Another Fee Type</button>
                     <br /><br />
-                    <button type="submit">Apply Fees to All Students in Class</button>{' '}
-                    <button type="button" onClick={() => console.log({ className, students, feesToApply })}>Check Current State</button>
+                    <button type="submit">Add Fees to Students</button>{' '}
+                   
                 </form>
             )}
         </div>

@@ -12,7 +12,7 @@ const Home = () => {
 
         <div className='top1' >
           <div className='both'>
-        <h1 className="home-title">Welcome to the <span className="highlight-yellow">Attendance Management System</span></h1>
+        <h1 className="home-title">Welcome to the <span className="highlight-yellow">Student Management System</span></h1>
         <br />
         <p className="home-description">
           This system simplifies attendance tracking for institutions, staff, and students. Whether you're managing a school, college, or workplace, our platform is designed to automate and streamline the attendance process.
