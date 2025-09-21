@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./MarkUpdate.css";
+import "./markUpdate.css";
 
 const MarkUpdate = () => {
   const location = useLocation();
